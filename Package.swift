@@ -10,9 +10,9 @@ let package = Package(
 			targets: ["GXGoogleMapsWrapper"])
 	],
 	dependencies: [
-		.package(url: "https://github.com/GeneXus-SwiftPackages/GXCoreModule_Common_Maps.git", exact: "3.1.0-beta.9"),
-		.package(url: "https://github.com/GeneXus-SwiftPackages/GXCoreUI.git", exact: "3.1.0-beta.9"),
-		.package(url: "https://github.com/GeneXus-SwiftPackages/GXUCMaps.git", exact: "3.1.0-beta.9")
+		.package(url: "https://github.com/GeneXus-SwiftPackages/GXCoreModule_Common_Maps.git", exact: "3.1.0-beta.10"),
+		.package(url: "https://github.com/GeneXus-SwiftPackages/GXCoreUI.git", exact: "3.1.0-beta.10"),
+		.package(url: "https://github.com/GeneXus-SwiftPackages/GXUCMaps.git", exact: "3.1.0-beta.10")
 	],
 	targets: [
 		.target(name: "GXGoogleMapsWrapper",
@@ -25,8 +25,8 @@ let package = Package(
 				path: "Sources"),
 		.binaryTarget(
 			name: "GXGoogleMaps",
-			url: "https://pkgs.genexus.dev/iOS/beta/GXGoogleMaps-3.1.0-beta.9.xcframework.zip",
-			checksum: "6239beb68bf16a88e97677e3bf28ef215e26e76d89a204008c7109fbfec63ffe"
+			url: "https://pkgs.genexus.dev/iOS/beta/GXGoogleMaps-3.1.0-beta.10.xcframework.zip",
+			checksum: "bd18a7494829e97270cf867d0781f99cf84c86bf79a69f12aaa556b2a57494ba"
 		)
 	]
 )
