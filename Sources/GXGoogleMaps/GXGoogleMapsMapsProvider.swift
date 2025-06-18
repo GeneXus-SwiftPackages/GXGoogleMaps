@@ -6,7 +6,7 @@ import GXCoreBL
 internal import GoogleMaps
 
 @objc(GXGoogleMapsMapsProvider)
-class GXGoogleMapsMapsProvider : NSObject, GXMapsProviderProtocol {
+open class GXGoogleMapsMapsProvider : NSObject, GXMapsProviderProtocol {
 	
 	private let GoogleMapsApiIdentifier = "MAPS_GOOGLE"
 	private let controlClasses: [GXMapsProvidersManager.MapControlType: AnyClass] = [
@@ -17,22 +17,22 @@ class GXGoogleMapsMapsProvider : NSObject, GXMapsProviderProtocol {
 	
 	private var isInitialized: Bool = false
     
-    @objc var mapsApiIdentifier: String {
+    @objc public var mapsApiIdentifier: String {
         GoogleMapsApiIdentifier
     }
     
-    @objc var initializationIsRequiered: Bool {
+    @objc open var initializationIsRequiered: Bool {
 		return !isInitialized && !GXMiniProgramsHelper.isSuperAppNonGXApp
     }
     
-    @objc func getClass(forControlType controlType: String) -> AnyClass? {
+    @objc open func getClass(forControlType controlType: String) -> AnyClass? {
 		guard let knownControlType = GXMapsProvidersManager.MapControlType(rawValue: controlType) else {
 			return nil
 		}
         return controlClasses[knownControlType]
     }
     
-    @objc func initializeProvider() {
+    @objc open func initializeProvider() {
 		guard initializationIsRequiered else {
 			return
 		}
@@ -44,12 +44,15 @@ class GXGoogleMapsMapsProvider : NSObject, GXMapsProviderProtocol {
         isInitialized = true
         GMSServices.provideAPIKey(apiKey)
     }
-    
-    // MARK: - Private Helpers
 	
-	private func getApiKey() -> String? {
-		GXModelManager.shared.activeModels.compactMapFirst { gxModel in
-			guard gxModel.appModel.isEmbeddedApplication else {	return nil }
+	/// Initialization API key is extracted from the returned models
+	open var modelsForAPIKey: [GXModel] {
+		GXModelManager.shared.activeModels.filter(\.appModel.isEmbeddedApplication)
+	}
+	
+	/// Extracts initialization API key from `modelsForAPIKey`
+	public func getApiKey() -> String? {
+		modelsForAPIKey.compactMapFirst { gxModel in
 			let appEntryPoint = gxModel.appModel.mainEntryPoint
 			guard let apiKey = appEntryPoint.value(forAppEntryPointProperty: kAppEntryPointPropertyAppleMapsApiKey) as? String,
 				  let mapsProviderId = appEntryPoint.value(forAppEntryPointProperty: kAppEntryPointPropertyAppleMapsApi) as? String,

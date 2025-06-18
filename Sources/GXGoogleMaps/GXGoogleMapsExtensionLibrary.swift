@@ -8,8 +8,12 @@ import GXCoreBL
 open class GXGoogleMapsExtensionLibrary: NSObject, GXExtensionLibraryProtocol {
     
     open func initializeExtensionLibrary(withContext context: GXExtensionLibraryContext) {
-        let googleMapsProvider = GXGoogleMapsMapsProvider()
+		let googleMapsProvider = newMapProvider()
         GXMapsProvidersManager.register(googleMapsProvider, forIdentifier: googleMapsProvider.mapsApiIdentifier)
     }
+	
+	open func newMapProvider() -> GXGoogleMapsMapsProvider {
+		GXGoogleMapsMapsProvider()
+	}
 }
 
