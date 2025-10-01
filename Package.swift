@@ -2,7 +2,7 @@
 import PackageDescription
 import Foundation
 
-let GX_FC_LAST_VERSION = Version("3.2.0-beta")
+let GX_FC_LAST_VERSION = Version("4.0.0-beta")
 
 let package = Package(
 	name: "GXGoogleMaps",
