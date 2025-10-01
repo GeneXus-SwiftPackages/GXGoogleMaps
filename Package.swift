@@ -6,12 +6,12 @@ let GX_FC_LAST_VERSION = Version("3.2.0-beta")
 
 let package = Package(
 	name: "GXGoogleMaps",
-	platforms: [.iOS(.v15), .tvOS("18.0"), .watchOS(.v10), .visionOS("2.0")],
+	platforms: [.iOS(.v16), .tvOS("18.0"), .watchOS(.v10), .visionOS("2.0")],
 	products: [
 		.library(name: "GXGoogleMaps", targets: ["GXGoogleMaps"]),
 	],
 	dependencies: [
-		.package(url: "https://github.com/googlemaps/ios-maps-sdk.git", .upToNextMajor(from: "9.0.0")),
+		.package(url: "https://github.com/googlemaps/ios-maps-sdk.git", .upToNextMajor(from: "10.0.0")),
 		.package(url: "https://github.com/googlemaps/google-maps-ios-utils.git", .upToNextMajor(from: "6.0.0")),
 		.gxFramework("GXCoreUI"),
 		.gxFramework("GXCoreModule_Common_Maps"),
